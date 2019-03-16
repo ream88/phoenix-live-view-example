@@ -69,7 +69,8 @@ config :phoenix, :plug_init_mode, :runtime
 # Configure your database
 config :app, App.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "",
   database: "app_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 10,
+  migration_primary_key: [type: :binary_id]
