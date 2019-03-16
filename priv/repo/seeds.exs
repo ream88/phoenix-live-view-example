@@ -9,3 +9,11 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+__DIR__
+|> Path.join("./countries.txt")
+|> File.stream!()
+|> Enum.map(fn country ->
+  %App.Country{name: country}
+end)
+|> Enum.each(&App.Repo.insert!/1)
