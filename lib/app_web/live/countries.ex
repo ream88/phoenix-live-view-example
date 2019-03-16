@@ -36,7 +36,7 @@ defmodule AppWeb.Countries do
 
   def handle_event("search", %{"query" => query}, socket) do
     send(self(), {:search, query})
-    {:noreply, assign(socket, loading: true)}
+    {:noreply, assign(socket, loading: true, result: [])}
   end
 
   def handle_info({:search, query}, socket) do
