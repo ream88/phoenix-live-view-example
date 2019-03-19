@@ -1,0 +1,18 @@
+<form phx-change="suggest" phx-submit="search">
+  <input name="query" list="matches" placeholder="Search for a Country…" value="<%= @query %>"
+    <%= if @loading, do: "readonly" %>
+  />
+
+  <datalist id="matches">
+  <%= for country <- @matches do %>
+    <option value="<%= country.name %>"><%= country.name %></option>
+  <% end %>
+  </datalist>
+
+  <%= if @loading do %>
+    <div>Loading…</div>
+  <% end %>
+  <%= if @result do %>
+    <div><%= @result %></div>
+  <% end %>
+</form>

@@ -1,28 +1,10 @@
 defmodule AppWeb.Countries do
   use Phoenix.LiveView
   alias App.Country
+  alias AppWeb.PageView
 
   def render(assigns) do
-    ~L"""
-    <form phx-change="suggest" phx-submit="search">
-      <input name="query" list="matches" placeholder="Search for a Country…" value="<%= @query %>"
-        <%= if @loading, do: "readonly" %>
-      />
-
-      <datalist id="matches">
-      <%= for country <- @matches do %>
-        <option value="<%= country.name %>"><%= country.name %></option>
-      <% end %>
-      </datalist>
-
-      <%= if @loading do %>
-        <div>Loading…</div>
-      <% end %>
-      <%= if @result do %>
-        <div><%= @result %></div>
-      <% end %>
-    </form>
-    """
+    AppWeb.PageView.render("form.html", assigns)
   end
 
   def mount(_session, socket) do
